@@ -1,0 +1,50 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+}
+
+.col {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+    width: 100%;
+    padding: 12px;
+}
+
+.col-4 {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+}
+
+.button {
+    align-items: center;
+    border-radius: 4px;
+    border: none;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-weight: bold;
+    letter-spacing: 0.0892857143em;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    text-indent: 0.0892857143em;
+    color: white;
+    height: 40px;
+    width: 100%;
+    font-size: 0.75rem;
+    cursor: pointer;
+    background-color: #2766bc !important;
+    border-color: #2766bc !important;
+}
