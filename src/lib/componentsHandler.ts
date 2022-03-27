@@ -6,5 +6,5 @@ export function generateComponent(component: ComponentNode | InstanceNode) {
         component: component,
         template: []
     }
-    state.pageComponents.push(comp);
+    state.pageComponents.push(comp)
 }

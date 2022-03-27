@@ -10,7 +10,7 @@ export var state = {
 }
 export const main = {
     createNuxtApp: (figma: PluginAPI) => {
-        let newApp = { pages: [] };
+        let newApp = { pages: [] }
 
         figma.root?.children[0]?.children?.forEach((page) => {
 
@@ -24,41 +24,41 @@ export const main = {
                     figmaComponents: page.children
                 }
                 state.pageComponents.forEach(e => {
-                    e.template = generateTemplate(e.component.children);
-                    delete e.component;
+                    e.template = generateTemplate(e.component.children)
+                    delete e.component
                 })
-                newApp.pages.push(pageProps);
+                newApp.pages.push(pageProps)
             }
-            state.pageComponents = [];
+            state.pageComponents = []
             // if there are no styles in the page
             if (state.pageStyle.length > 0) {
                 state.pageStyle.unshift("<style>")
                 state.pageStyle.push("</style>")
             }
-            state.pageStyle = [];
+            state.pageStyle = []
 
-        });
-        return newApp;
+        })
+        return newApp
     },
 }
 
 function generateTemplate(components: readonly SceneNode[]) {
-    let template = [];
+    let template = []
     components.forEach((component: SceneNode) => {
 
-        state.tempLine = "";
-        state.tempBlock = [];
+        state.tempLine = ""
+        state.tempBlock = []
 
-        let i = 2;
-        template.push(elementBuilder(component, i));
-    });
-    template.reverse();
-    template.unshift("  <div>");
-    template.unshift("<template>");
-    template.push("  </div>");
-    template.push("</template>");
+        let i = 2
+        template.push(elementBuilder(component, i))
+    })
+    template.reverse()
+    template.unshift("  <div>")
+    template.unshift("<template>")
+    template.push("  </div>")
+    template.push("</template>")
 
 
-    return template;
+    return template
 }
 

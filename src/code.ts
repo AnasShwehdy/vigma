@@ -1,18 +1,18 @@
-import { main } from "./utils"
+import { main } from "./lib"
 
-figma.showUI(__html__, { width: 400, height: 500 });
+figma.showUI(__html__, { width: 400, height: 500 })
 
 
 figma.ui.onmessage = msg => {
 
   if (msg.type === 'create') {
 
-    const app = main.createNuxtApp(figma);
+    const app = main.createNuxtApp(figma)
     console.log(app)
   }
 
 
 
   // figma.closePlugin();
-};
+}
 

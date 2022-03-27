@@ -6,46 +6,46 @@ import { generateStyle } from "./style"
 
 export function elementBuilder(component: SceneNode, i: number) {
     if (component.type === 'TEXT') {
-        return builders.buildTextElement(component, i);
+        return builders.buildTextElement(component, i)
     }
     if (component.type === 'GROUP') {
-        return builders.buildDivElement(component, i);
+        return builders.buildDivElement(component, i)
     }
     if (component.type === 'COMPONENT' || component.type === "INSTANCE") {
         if (!state.pageComponents.find(e => e.name == component.name))
-            generateComponent(component);
+            generateComponent(component)
         return builders.buildComponentElement(component, 2)
     }
     if (component.type === 'RECTANGLE') {
-        return builders.buildDivElement(component, i);
+        return builders.buildDivElement(component, i)
     }
 }
 const builders = {
     buildTextElement: (component: TextNode, i: number) => {
 
-        generateStyle(component);
-        let comp = space(i) + `<p class="${component.name.toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:;]', 'g'), '-')}">${component.characters}</p>`;
-        return comp;
+        generateStyle(component)
+        let comp = space(i) + `<p class="${component.name.toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:]', 'g'), '-')}">${component.characters}</p>`
+        return comp
     },
     // This is made "any" here,
     // because i don't know what types of nodes have the children property yet.
     buildDivElement: (component: any, i: number) => {
-        let comp = `div id="${component.name.toLowerCase().replace(" ", "")}">`;
-        state.tempBlock.push(space(i) + "<" + comp);
+        let comp = `div id="${component.name.toLowerCase().replace(" ", "")}">`
+        state.tempBlock.push(space(i) + "<" + comp)
 
         if (component.children && component.children.length > 0)
-            recursiveSearch(component, i + 1);
+            recursiveSearch(component, i + 1)
 
-        state.tempBlock.push(space(i) + "</" + comp);
+        state.tempBlock.push(space(i) + "</" + comp)
         state.tempBlock.forEach(e => {
-            state.tempLine += e + '\n';
+            state.tempLine += e + '\n'
         })
-        state.tempBlock = [];
-        return state.tempLine;
+        state.tempBlock = []
+        return state.tempLine
     },
     buildComponentElement: (component: ComponentNode | InstanceNode, i: number) => {
-        let comp = `${component.name.toLowerCase().replace(" ", "")} />`;
-        return space(i) + "<" + comp;
+        let comp = `${component.name.toLowerCase().replace(" ", "")} />`
+        return space(i) + "<" + comp
     },
 
 }
@@ -62,7 +62,7 @@ function recursiveSearch(component: any, i: number) {
                     state.tempBlock.push(elementBuilder(c, i + 1))
                     return
                 }
-                return elementBuilder(c, i + 1);
+                return elementBuilder(c, i + 1)
             }
         }
         else {
@@ -74,10 +74,10 @@ function recursiveSearch(component: any, i: number) {
 
 // Adding spaces for styling purposes
 function space(i: number) {
-    let space = "";
-    for (let index = 0; index < i * 2; index++) {
-        space += " ";
+    let space = ""
+    for (let j = 0; j < i * 2; j++) {
+        space += " "
     }
-    return space;
+    return space
 }
 
