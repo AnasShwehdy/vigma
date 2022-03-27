@@ -24,7 +24,7 @@ const builders = {
     buildTextElement: (component: TextNode, i: number) => {
 
         generateStyle(component);
-        let comp = space(i) + `<p class="${component.name.toLowerCase().replace(" ", "")}">${component.characters}</p>`;
+        let comp = space(i) + `<p class="${component.name.toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:;]', 'g'), '-')}">${component.characters}</p>`;
         return comp;
     },
     // This is made "any" here,

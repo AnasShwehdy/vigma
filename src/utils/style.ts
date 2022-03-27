@@ -6,7 +6,7 @@ export function generateStyle(component: SceneNode) {
 
 export const generators = {
     generateText: (component: TextNode) => {
-        state.pageStyle.push(`.${component.name.toLowerCase().replace(" ", "")}{`)
+        state.pageStyle.push(`.${component.name.toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:;]', 'g'), '-')}{`)
         let textStyle = [];
         if (component.fills[0]) {
             const color = generateColor(component)
