@@ -1,5 +1,6 @@
-import { state, main } from "./index"
+import { state } from "./index"
 import { generateComponent } from "./componentsHandler"
+import { generateStyle } from "./style"
 
 
 
@@ -22,8 +23,8 @@ export function elementBuilder(component: SceneNode, i: number) {
 const builders = {
     buildTextElement: (component: TextNode, i: number) => {
 
-        console.log(main.getSolidColor(component))
-        let comp = space(i) + `<p id="${component.name.toLowerCase().replace(" ", "")}">${component.characters}</p>`;
+        generateStyle(component);
+        let comp = space(i) + `<p class="${component.name.toLowerCase().replace(" ", "")}">${component.characters}</p>`;
         return comp;
     },
     // This is made "any" here,
@@ -79,3 +80,4 @@ function space(i: number) {
     }
     return space;
 }
+
