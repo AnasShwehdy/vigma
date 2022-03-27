@@ -40,19 +40,39 @@ export const main = {
         })
         return newApp
     },
+    // Adding spaces for styling purposes
+    space: (i: number) => {
+        let space = ""
+        for (let j = 0; j < i * 2; j++) {
+            space += " "
+        }
+        return space
+    }
+
 }
 
 function generateTemplate(components: readonly SceneNode[]) {
     let template = []
-    components.forEach((component: SceneNode) => {
-
+    for (let index = components.length - 1; index >= 0; index--) {
         state.tempLine = ""
         state.tempBlock = []
 
         let i = 2
+        let component: SceneNode = components[index]
         template.push(elementBuilder(component, i))
-    })
-    template.reverse()
+    }
+    // *****
+    // ***Enable if you want to itrate the children in an ascending order
+    // *****
+    
+    // components.forEach((component: SceneNode) => {
+
+    //     state.tempLine = ""
+    //     state.tempBlock = []
+
+    //     let i = 2
+    //     template.push(elementBuilder(component, i))
+    // })
     template.unshift("  <div>")
     template.unshift("<template>")
     template.push("  </div>")

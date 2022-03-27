@@ -1,4 +1,4 @@
-import { state } from "./index"
+import { state, main } from "./index"
 
 export function generateStyle(component: SceneNode) {
     if (component.type === "TEXT") generators.generateText(component)
@@ -6,11 +6,12 @@ export function generateStyle(component: SceneNode) {
 
 export const generators = {
     generateText: (component: TextNode) => {
-        state.pageStyle.push(`.${component.name.toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:]', 'g'), '-')}{`)
+        state.pageStyle.push(`.${component.name.toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:;]', 'g'), '-')} {`)
         let textStyle = []
         if (component.fills[0]) {
             const color = generateColor(component)
             textStyle.push(color)
+            textStyle.push(`${main.space(1)}opacity: ${component.fills[0].opacity.toFixed(2)};`)
         }
         generateType(component)
 
@@ -26,8 +27,8 @@ function generateType(component: TextNode) {
 function generateFont(component: TextNode) {
     if (component.fontName !== figma.mixed) {
         let font = component.fontName;
-        state.pageStyle.push(`font-family: '${String(font.family)}';`)
-        state.pageStyle.push(`font-style: normal;`)
+        state.pageStyle.push(`${main.space(1)}font-family: '${String(font.family)}';`)
+        state.pageStyle.push(`${main.space(1)}font-style: normal;`)
         let weight = 0;
         switch (font.style) {
             case "Thin":
@@ -61,7 +62,7 @@ function generateFont(component: TextNode) {
             default: 400
                 break;
         }
-        state.pageStyle.push(`font-weight: ${weight};`)
+        state.pageStyle.push(`${main.space(1)}font-weight: ${weight};`)
 
         if (component.lineHeight !== figma.mixed) {
             let lineHeight: any = 0;
@@ -71,37 +72,37 @@ function generateFont(component: TextNode) {
                 lineHeight = `${component.lineHeight.value.toFixed(0)}%`
             else if (component.lineHeight.unit == "AUTO")
                 lineHeight = `auto`
-            state.pageStyle.push(`line-height: ${String(lineHeight)};`)
+            state.pageStyle.push(`${main.space(1)}line-height: ${String(lineHeight)};`)
         }
         if (component.letterSpacing !== figma.mixed) {
             let letterSpacing: any = 0;
             if (component.letterSpacing.unit == "PIXELS")
                 letterSpacing = `${component.letterSpacing.value}px`
             else if (component.letterSpacing.unit == "PERCENT")
-                letterSpacing = `${component.letterSpacing.value.toFixed(0)}%`
-            state.pageStyle.push(`letter-spacing: ${String(letterSpacing)};`)
+                letterSpacing = `${(component.letterSpacing.value / 100)}em`
+            state.pageStyle.push(`${main.space(1)}letter-spacing: ${String(letterSpacing)};`)
         }
         component.textAlignHorizontal
-        state.pageStyle.push(`text-align: ${String(component.textAlignHorizontal.toLowerCase())};`)
+        state.pageStyle.push(`${main.space(1)}text-align: ${String(component.textAlignHorizontal.toLowerCase())};`)
 
     }
 
 }
 function generateFontSize(component: TextNode) {
-    state.pageStyle.push(`font-size: ${String(component.fontSize)}px;`)
+    state.pageStyle.push(`${main.space(1)}font-size: ${String(component.fontSize)}px;`)
 }
 function generateColor(component: TextNode) {
-    return `color: ${getSolidColor(component)}`
+    return `${main.space(1)}color: ${getSolidColor(component)};`
 }
 // This is any, because idk which NodeTypes have fills and and which doesn't
 function getSolidColor(component: any) {
     let fillColor = component.fills[0]
-    let color = getRGB(fillColor.color, fillColor.opacity)
+    let color = getRGB(fillColor.color)
     return color
 }
 
-function getRGB({ r, g, b }: any, a: number) {
+function getRGB({ r, g, b }: any) {
     let rgbColorArray = [r, g, b].map(channel => Math.round(channel * 255))
-    let color = `rgb(${rgbColorArray[0]} ${rgbColorArray[1]} ${rgbColorArray[2]} ${a.toFixed(2)})`
+    let color = `rgb(${rgbColorArray[0]} ${rgbColorArray[1]} ${rgbColorArray[2]})`
     return color
 }

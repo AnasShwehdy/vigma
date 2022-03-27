@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
 * {
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-family: 'Poppins'
+
 }
 
 .container {
@@ -34,17 +39,51 @@
     border: none;
     display: inline-flex;
     flex: 0 0 auto;
-    font-weight: bold;
-    letter-spacing: 0.0892857143em;
+    font-weight: 600;
     justify-content: center;
     position: relative;
     text-decoration: none;
-    text-indent: 0.0892857143em;
     color: white;
     height: 40px;
-    width: 100%;
-    font-size: 0.75rem;
+    width: 50%;
+    font-size: 1rem;
     cursor: pointer;
     background-color: #2766bc !important;
     border-color: #2766bc !important;
+}
+
+
+
+body {
+    width: 90%;
+    margin: 0 auto;
+}
+
+@media (max-width: 650px) {
+    body {
+        width: 75%;
+    }
+}
+
+@media (max-width: 430px) {
+    body {
+        width: 100%;
+    }
+}
+
+code,
+.code,
+pre {
+    background: #292929;
+    color: #77fbd0;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0;
+    padding: 10px;
+    border-radius: 10px;
+
+}
+
+code>p {
+    font-family: 'JetBrains Mono' !important;
 }
