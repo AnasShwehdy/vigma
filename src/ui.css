@@ -74,10 +74,10 @@ body {
 code,
 .code,
 pre {
-    background: #292929;
-    color: #77fbd0;
+    background: #e3e3e3;
+    color: #181818;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     padding: 0;
     padding: 10px;
     border-radius: 10px;
@@ -86,4 +86,8 @@ pre {
 
 code>p {
     font-family: 'JetBrains Mono' !important;
+}
+
+details {
+    padding-top: 20px;
 }

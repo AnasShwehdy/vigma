@@ -1,5 +1,5 @@
 import './ui.css'
-import { copyToClipboardAsync } from 'figx'
+// import { copyToClipboardAsync } from 'figx'
 
 
 
@@ -14,9 +14,11 @@ onmessage = (event) => {
     if (event.data.pluginMessage.type === "created-app") {
         let pages = event.data.pluginMessage.data.pages
         for (let i = 0; i < pages.length; i++) {
-            let page = document.createElement("h5")
-            page.innerText = pages[i].name
-            document.body.appendChild(page)
+
+            let page = document.createElement("details")
+            let summary = document.createElement("summary")
+
+            summary.innerText = pages[i].name
 
 
             let pre = document.createElement("pre")
@@ -36,8 +38,10 @@ onmessage = (event) => {
             code.appendChild(styleCode)
 
             pre.appendChild(code)
+            page.appendChild(summary)
+            page.appendChild(pre)
             let brakLine = document.createElement("br")
-            document.body.appendChild(pre)
+            document.body.appendChild(page)
             document.body.appendChild(brakLine)
 
         }
