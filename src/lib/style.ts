@@ -2,6 +2,7 @@ import { state, main } from "./index"
 
 export function generateStyle(component: SceneNode) {
     if (component.type === "TEXT") generators.generateText(component)
+    if (component.type === "RECTANGLE") generators.generateButton(component)
 }
 
 export const generators = {
@@ -9,13 +10,40 @@ export const generators = {
         state.pageStyle.push(`.${component.name.toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:;]', 'g'), '-')} {`)
         let textStyle = []
         if (component.fills[0]) {
-            const color = generateColor(component)
+            const color = generateTextColor(component)
             textStyle.push(color)
             textStyle.push(`${main.space(1)}opacity: ${component.fills[0].opacity.toFixed(2)};`)
         }
         generateType(component)
 
         state.pageStyle.push(textStyle.toString())
+        state.pageStyle.push("}")
+    },
+    generateButton: (component: RectangleNode) => {
+        let elClass = `${component.parent.name.slice(8).toLowerCase().replace(" ", "") + '-' + component.parent.id.replace(RegExp('[:]', 'g'), '-')}`
+        state.pageStyle.push(`.${elClass} {`)
+
+        let buttonStyle = []
+        let stroke: Paint = component.strokes[0]
+        if (stroke && stroke.visible) {
+            const strokeColor = generateBorderColor(stroke)
+            buttonStyle.push(strokeColor)
+            component.strokeWeight
+            state.pageStyle.push(`${main.space(1)}border-width: ${String(component.strokeWeight)}px;`)
+            state.pageStyle.push(`${main.space(1)}border-style: solid;`)
+
+        }
+
+        let background: Paint = component.fills[0]
+        if (background.visible) {
+            const bgColor = generateBgColor(background)
+            buttonStyle.push(bgColor)
+        }
+        // buttonStyle.push(`${main.space(1)}opacity: ${component.strokes[0].opacity.toFixed(2)};`)
+
+        state.pageStyle.push(`${main.space(1)}border-radius: ${String(component.cornerRadius)}px;`)
+        state.pageStyle.push(buttonStyle.toString())
+
         state.pageStyle.push("}")
     }
 }
@@ -91,14 +119,33 @@ function generateFont(component: TextNode) {
 function generateFontSize(component: TextNode) {
     state.pageStyle.push(`${main.space(1)}font-size: ${String(component.fontSize)}px;`)
 }
-function generateColor(component: TextNode) {
-    return `${main.space(1)}color: ${getSolidColor(component)};`
+function generateTextColor(component: TextNode) {
+    return `${main.space(1)}color: ${getTextSolidColor(component)};`
 }
-// This is any, because idk which NodeTypes have fills and and which doesn't
-function getSolidColor(component: any) {
+function generateBorderColor(stroke: Paint) {
+    return `${main.space(1)}border-color: ${getBorderSolidColor(stroke)};`
+}
+function generateBgColor(background: Paint) {
+    return `${main.space(1)}background-color: ${getBgSolidColor(background)};`
+}
+function getTextSolidColor(component: TextNode) {
     let fillColor = component.fills[0]
     let color = getRGB(fillColor.color)
     return color
+}
+function getBorderSolidColor(stroke: Paint) {
+    if (stroke.type === "SOLID") {
+        let color = getRGB(stroke.color)
+        return color
+    }
+    return "null"
+}
+function getBgSolidColor(background: Paint) {
+    if (background.type === "SOLID") {
+        let color = getRGB(background.color)
+        return color
+    }
+    return "null"
 }
 
 function getRGB({ r, g, b }: any) {
