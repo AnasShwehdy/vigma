@@ -3,10 +3,13 @@ import { general } from "./index"
 
 
 export default function generateButton(component: RectangleNode) {
-    let elClass = `${component.parent.name.slice(8).toLowerCase().replace(" ", "") + '-' + component.parent.id.replace(RegExp('[:]', 'g'), '-')}`
+    let elClass = `${component.parent.name.slice(8).toLowerCase().replace(" ", "") + '-' + component.parent.id.replace(RegExp('[:;]', 'g'), '-')}`
     state.pageStyle.push(`.${elClass} {`)
 
     let buttonStyle = []
+    // *******
+    // Border
+    // *******
     let stroke: Paint = component.strokes[0]
     if (stroke && stroke.visible) {
         const strokeColor = generateBorderColor(stroke)
@@ -16,9 +19,11 @@ export default function generateButton(component: RectangleNode) {
         state.pageStyle.push(`${main.space(1)}border-style: solid;`)
 
     }
-
+    // *******
+    // Background
+    // *******
     let background: Paint = component.fills[0]
-    if (background.visible) {
+    if (background && background.visible) {
         const bgColor = generateBgColor(background)
         buttonStyle.push(bgColor)
     }
@@ -26,6 +31,8 @@ export default function generateButton(component: RectangleNode) {
 
     state.pageStyle.push(`${main.space(1)}border-radius: ${String(component.cornerRadius)}px;`)
     state.pageStyle.push(buttonStyle.toString())
+    state.pageStyle.push(`${main.space(1)}width: ${String(component.width)}px;`)
+    state.pageStyle.push(`${main.space(1)}height: ${String(component.height)}px;`)
 
     state.pageStyle.push("}")
 }

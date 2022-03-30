@@ -2,7 +2,7 @@ import { main, state } from "../index"
 import { recursiveSearch } from "./index"
 
 export default function buildButtonElement(component: GroupNode, i: number) {
-    let elClass = `${component.name.slice(8).toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:]', 'g'), '-')}`
+    let elClass = `${component.name.slice(8).toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:;]', 'g'), '-')}`
 
     let comp = `button class="${elClass}">`
     state.tempBlock.push(main.space(i) + "<" + comp)

@@ -1,5 +1,4 @@
 
-// import { generateStyle } from "../style"
 import { main } from "../index"
 
 export default function buildComponentElement(component: ComponentNode | InstanceNode, i: number) {

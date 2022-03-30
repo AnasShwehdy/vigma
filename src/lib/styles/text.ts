@@ -13,6 +13,13 @@ export default function generateText(component: TextNode) {
     generateType(component)
 
     state.pageStyle.push(textStyle.toString())
+
+    if (component.name.includes("Button")) {
+        state.pageStyle.push(`${main.space(1)}display: flex;`)
+        state.pageStyle.push(`${main.space(1)}align-items: center;`)
+        state.pageStyle.push(`${main.space(1)}justify-content: center;`)
+        state.pageStyle.push(`${main.space(1)}height: 100%;`)
+    }
     state.pageStyle.push("}")
 }
 
