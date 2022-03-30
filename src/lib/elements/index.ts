@@ -4,7 +4,7 @@ import buildDivElement from "./div"
 import buildComponentElement from "./component"
 
 import { generateComponent } from "../componentsHandler"
-import { generateStyle } from "../style"
+import generateStyle from "../styles"
 import { state } from "../index"
 
 export function elementBuilder(component: SceneNode, i: number) {

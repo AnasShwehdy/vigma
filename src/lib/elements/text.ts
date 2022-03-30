@@ -1,4 +1,4 @@
-import { generateStyle } from "../style"
+import  generateStyle  from "../styles"
 import {  main } from "../index"
 
 export default function buildTextElement(component: TextNode, i: number) {

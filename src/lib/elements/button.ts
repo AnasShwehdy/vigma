@@ -1,4 +1,3 @@
-import { generateStyle } from "../style"
 import { main, state } from "../index"
 import { recursiveSearch } from "./index"
 
