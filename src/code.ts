@@ -7,7 +7,7 @@ figma.ui.onmessage = msg => {
 
   if (msg.type === 'create') {
 
-    const app = main.createNuxtApp(figma)
+    const app = main.createApp(figma)
     figma.ui.postMessage({ type: "created-app", data: app })
     console.log(app)
 

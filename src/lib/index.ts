@@ -1,4 +1,4 @@
-import { elementBuilder } from "./elementBuilders"
+import { elementBuilder } from "./elements"
 
 
 // State variabls
@@ -9,7 +9,7 @@ export var state = {
     tempLine: "",
 }
 export const main = {
-    createNuxtApp: (figma: PluginAPI) => {
+    createApp: (figma: PluginAPI) => {
         let newApp = { pages: [] }
 
         figma.root?.children[0]?.children?.forEach((page) => {
