@@ -1,9 +1,15 @@
 import generateText from "./text"
 import generateButton from "./button"
+import generateRow from "./row"
 
-export default function generateStyle(component: SceneNode) {
-    if (component.type === "TEXT") generateText(component)
-    if (component.type === "RECTANGLE") generateButton(component)
+export default function generateStyle(component: SceneNode, type: String = "") {
+    if (component.type === "TEXT") return generateText(component)
+    if (component.type === "RECTANGLE") {
+        if (type == "Row")
+            return generateRow(component)
+        if (type == "Button")
+            return generateButton(component)
+    }
 }
 
 

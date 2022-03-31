@@ -21,6 +21,7 @@ export default function generateText(component: TextNode) {
         state.pageStyle.push(`${main.space(1)}height: 100%;`)
     }
     state.pageStyle.push("}")
+    return ""
 }
 
 

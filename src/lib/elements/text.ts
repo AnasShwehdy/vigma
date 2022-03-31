@@ -2,6 +2,7 @@ import  generateStyle  from "../styles"
 import {  main } from "../index"
 
 export default function buildTextElement(component: TextNode, i: number) {
+    console.log("build", component.name)
 
     generateStyle(component)
     let elClass = `${component.name.toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:;]', 'g'), '-')}`

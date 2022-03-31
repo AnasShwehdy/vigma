@@ -3,8 +3,19 @@ import { general } from "./index"
 
 
 export default function generateBackground(component: RectangleNode) {
-    let elClass = `${component.parent.name.slice(8).toLowerCase().replace(" ", "") + '-' + component.parent.id.replace(RegExp('[:;]', 'g'), '-')}`
+    let parent = component.parent;
+    let name = parent.name.search(RegExp("\w*:"));
+
+    let elClass = `${parent.name.slice(0, name).toLowerCase().replace(" ", "") + '-' + parent.id.replace(RegExp('[:;]', 'g'), '-')}`
     state.pageStyle.push(`.${elClass} {`)
+
+    state.pageStyle.push(`${main.space(1)}display: flex;`)
+
+    if (parent.name.includes("v-center"))
+        state.pageStyle.push(`${main.space(1)}align-items: center;`)
+
+    if (parent.name.includes("h-center"))
+        state.pageStyle.push(`${main.space(1)}justify-content: center;`)
 
     let style = []
     // *******

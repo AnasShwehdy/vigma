@@ -70,7 +70,7 @@ function generateTemplate(components: readonly SceneNode[]) {
     // ***Disable this if above is enabled
     // *****
     components.forEach((component: SceneNode) => {
-
+        console.log("main", component.name)
         state.tempLine = ""
         state.tempBlock = []
 
