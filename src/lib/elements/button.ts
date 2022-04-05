@@ -3,8 +3,9 @@ import { recursiveSearch } from "./index"
 import generateStyle from "../styles"
 
 export default function buildButtonElement(component: GroupNode, i: number) {
-    let elClass = `${component.name.slice(8).toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:;]', 'g'), '-')}`
 
+    let name = component.name.search(RegExp("\w*:"));
+    let elClass = `${component.name.slice(0, name).toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:;]', 'g'), '-')}`
     let background = component.children.find(e => e.name == "Background")
     if (background)
         generateStyle(background, "Button")

@@ -6,6 +6,22 @@ import './ui.css'
 document.getElementById('create').onclick = () => {
     parent.postMessage({ pluginMessage: { type: 'create' } }, '*')
 }
+let codeElement = document.getElementById('instruction-code');
+let code = `
+<div class="GroupName">
+    <div class="cols-6">
+        <p class="TextName">Text content here</p>
+    </div>
+    <div class="cols-6">
+        <button class="ButtonName">
+           <p class="TextName">Button text content here</p>
+        </button>
+    </div>
+</div>`
+codeElement.innerText = code;
+codeElement.style.padding = "0";
+codeElement.style.margin = "-37px 0";
+
 
 // document.getElementById('copy').onclick = () => {
 //     const promise = copyToClipboardAsync("text");}

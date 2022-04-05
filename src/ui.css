@@ -50,6 +50,7 @@
     cursor: pointer;
     background-color: #2766bc !important;
     border-color: #2766bc !important;
+    margin-bottom: 20px;
 }
 
 
@@ -57,6 +58,7 @@
 body {
     width: 90%;
     margin: 0 auto;
+    padding: 20px;
 }
 
 @media (max-width: 650px) {
@@ -78,14 +80,14 @@ pre {
     color: #181818;
     font-size: 16px;
     font-weight: 600;
-    padding: 0;
     padding: 10px;
     border-radius: 10px;
+    white-space: pre-wrap;
 
 }
 
 code>p {
-    font-family: 'JetBrains Mono' !important;
+    font-family: 'Consolas' !important;
 }
 
 details {

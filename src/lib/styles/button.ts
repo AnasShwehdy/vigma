@@ -3,7 +3,10 @@ import { general } from "./index"
 
 
 export default function generateBackground(component: RectangleNode) {
-    let elClass = `${component.parent.name.slice(8).toLowerCase().replace(" ", "") + '-' + component.parent.id.replace(RegExp('[:;]', 'g'), '-')}`
+    let parent = component.parent;
+    let name = parent.name.search(RegExp("\w*:"));
+
+    let elClass = `${parent.name.slice(0, name).toLowerCase().replace(" ", "") + '-' + parent.id.replace(RegExp('[:;]', 'g'), '-')}`
     state.pageStyle.push(`.${elClass} {`)
 
     let style = []

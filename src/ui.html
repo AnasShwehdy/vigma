@@ -1,4 +1,75 @@
-<h2>Vue Project Generator</h2>
+<h2>Vigma - Vue Project Generator</h2>
+<div>
+    <a target="_blank"
+            href="https://twitter.com/AnasShwehdy"> <i class="fa fa-twitter" style="font-size:24px"></i> @AnasShwehdy</a>
+   
+</div>
+<h3>Instructions:</h3>
+<p>Use the utility classes to insure Vigma captures the design accurately, those classes can be applied by
+    including them in Figma layers names. </p>
+<details style="padding-bottom: 20px;">
+    <summary>Show instructions</summary>
+    <ul>
+        <li>
+            <b>Flex properties</b>
+            <ul>
+                <li><b>row:</b> To apply <code
+                        style="padding: 1px 2px;margin: 0 5px;border-radius: 0;"> display: flex; </code>on a group.</li>
+                <li><b>h-center:</b> To center the children horizontally.</li>
+                <li><b>v-center:</b> To center the children vertically.</li>
+            </ul>
+        </li>
+        <li>
+            <b> Columns</b>
+            <ul>
+                <li><b>col:</b> To mark a group as a column.</li>
+                <li><b>value:</b> The col property takes a value to apply width for the column, values are 1-12</li>
+            </ul>
+        </li>
+        <li>
+            <b>Buttons</b>
+            <ul>
+                <li><b>button:</b> To mark a group as a button.</li>
+                <li><b>ButtonText:</b> A button group should contain a Figma text inside it, it will be converted into a
+                    paragraph element.</li>
+                <li><b>ButtonBackground:</b> A button group should contain a Figma rectangle inside it, the generated
+                    button element will take its style from this rectangle.</li>
+            </ul>
+        </li>
+    </ul>
+    <b> Example: </b> The following is an example of how we can use those classes with Figma layers.
+    <ul>
+        <li>GroupName: row, v-center, h-center</li>
+        <ul>
+            <li>SubGroupName: cols-6</li>
+            <ul>
+                <li>ButtonName: button</li>
+                <ul>
+                    <li>ButtonText</li>
+                </ul>
+                <ul>
+                    <li>ButtonBackground</li>
+                </ul>
+            </ul>
+        </ul>
+        <ul>
+            <li>SubGroupName: cols-6</li>
+            <ul>
+                <li>Text</li>
+            </ul>
+        </ul>
+    </ul>
+    <p>The above tree will then be converted into this code:</p>
+    <pre>
+              <p id="instruction-code"></p>
+        </pre>
+    </li>
+</details>
 
 <button id="create" class="button">Generate</button>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 <!-- <button id="copy" class="button">Copy</button> -->
