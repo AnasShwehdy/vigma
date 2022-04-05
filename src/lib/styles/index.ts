@@ -1,6 +1,7 @@
 import generateText from "./text"
 import generateButton from "./button"
 import generateRow from "./row"
+import generateColumn from "./column"
 
 export default function generateStyle(component: SceneNode, type: String = "") {
     if (component.type === "TEXT") return generateText(component)
@@ -9,6 +10,11 @@ export default function generateStyle(component: SceneNode, type: String = "") {
             return generateRow(component)
         if (type == "Button")
             return generateButton(component)
+    }
+    if (component.type === "GROUP") {
+        if (type == "Col")
+            return generateColumn(component)
+
     }
 }
 

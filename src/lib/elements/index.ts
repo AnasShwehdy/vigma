@@ -2,6 +2,7 @@ import buildTextElement from "./text"
 import buildButtonElement from "./button"
 import buildDivElement from "./div"
 import buildRowElement from "./row"
+import buildColumnElement from "./column"
 import buildComponentElement from "./component"
 
 import { generateComponent } from "../componentsHandler"

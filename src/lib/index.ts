@@ -5,12 +5,13 @@ import { elementBuilder } from "./elements"
 export var state = {
     pageComponents: [],
     pageStyle: [],
+    globalStyle: [],
     tempBlock: [],
     tempLine: "",
 }
 export const main = {
     createApp: (figma: PluginAPI) => {
-        let newApp = { pages: [] }
+        let newApp = { pages: [], globalStyle: [] }
 
         figma.root?.children[0]?.children?.forEach((page) => {
 
@@ -39,6 +40,7 @@ export const main = {
             state.pageStyle = []
 
         })
+        newApp.globalStyle = state.globalStyle
         return newApp
     },
     // Adding spaces for styling purposes

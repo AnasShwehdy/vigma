@@ -12,6 +12,30 @@ document.getElementById('create').onclick = () => {
 
 onmessage = (event) => {
     if (event.data.pluginMessage.type === "created-app") {
+        let page = document.createElement("details")
+        let summary = document.createElement("summary")
+
+        summary.innerText = "global.css"
+
+
+        let pre = document.createElement("pre")
+        let code = document.createElement("code")
+        pre.innerText = "// global.css"
+
+        let tempCode = document.createElement("p")
+        let templateContent = event.data.pluginMessage.data.globalStyle.toString().replace(RegExp(",", "g"), "\n")
+        tempCode.innerText = templateContent
+
+        code.appendChild(tempCode)
+
+
+        pre.appendChild(code)
+        page.appendChild(summary)
+        page.appendChild(pre)
+        let brakLine = document.createElement("br")
+        document.body.appendChild(page)
+        document.body.appendChild(brakLine)
+
         let pages = event.data.pluginMessage.data.pages
         for (let i = 0; i < pages.length; i++) {
 

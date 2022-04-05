@@ -6,9 +6,7 @@ export default function buildRowElement(component: GroupNode, i: number) {
     let name = component.name.search(RegExp("\w*:"));
     let elClass = `${component.name.slice(0, name).toLowerCase().replace(" ", "") + '-' + component.id.replace(RegExp('[:;]', 'g'), '-')}`
 
-    let background = component.children.find(e => e.name == "Background")
-    if (background)
-        generateStyle(background, "Row")
+    generateStyle(component, "Col")
 
     let comp = `div class="${elClass}">`
     state.tempBlock.push(main.space(i) + "<" + comp)

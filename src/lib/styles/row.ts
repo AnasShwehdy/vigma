@@ -10,6 +10,7 @@ export default function generateBackground(component: RectangleNode) {
     state.pageStyle.push(`.${elClass} {`)
 
     state.pageStyle.push(`${main.space(1)}display: flex;`)
+    state.pageStyle.push(`${main.space(1)}flex-wrap: wrap;`)
 
     if (parent.name.includes("v-center"))
         state.pageStyle.push(`${main.space(1)}align-items: center;`)
